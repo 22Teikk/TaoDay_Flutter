@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/extensions.dart';
-import 'package:taoday/ui/permission/permission_view.dart';
+import 'package:taoday/ui/permission/permission_binding.dart';
+import 'package:taoday/ui/permission/permission_one_view.dart';
 import 'package:taoday/ui/policy/policy_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -29,9 +30,11 @@ class PolicyPage extends GetView<PolicyController> {
                 children: [
                   Checkbox(
                     value: controller.isSelected.value,
-                    onChanged: controller.isDone.value == true ? (bool? value) {
-                      controller.setSelected(value);
-                    } : null,
+                    onChanged: controller.isDone.value == true
+                        ? (bool? value) {
+                            controller.setSelected(value);
+                          }
+                        : null,
                     activeColor: Colors.blue,
                   ),
                   Text(
@@ -42,24 +45,36 @@ class PolicyPage extends GetView<PolicyController> {
                   ),
                 ],
               ),
-              SizedBox(height: 1.0.hp,),
+              SizedBox(
+                height: 1.0.hp,
+              ),
               InkWell(
-                onTap: controller.isSelected.value ? () {
-                  Get.off(() => const PermissionPage());
-                }: null,
+                onTap: controller.isSelected.value
+                    ? () {
+                        controller.setNotFirst();
+                        Get.off(() => const PermissionOnePage(),
+                            binding: PermissionBinding());
+                      }
+                    : null,
                 child: Container(
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
-                    color: controller.isSelected.value ? Colors.blue : Colors.grey,
+                    color:
+                        controller.isSelected.value ? Colors.blue : Colors.grey,
                     borderRadius: BorderRadius.circular(10.0.wp),
                   ),
                   width: 80.0.wp,
-                  height: 5.0.hp,
-                  child: Center(child: Text("Continue", style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14.0.sp,
-                  ),),),
+                  height: 6.0.hp,
+                  child: Center(
+                    child: Text(
+                      "Continue",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.0.sp,
+                      ),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(height: 2.0.hp),

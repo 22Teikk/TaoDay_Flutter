@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:taoday/core/utils/constant.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PolicyController extends GetxController {
@@ -40,5 +42,10 @@ class PolicyController extends GetxController {
 
   void setSelected(bool? value) {
     isSelected.value = value ?? false;
+  }
+
+  void setNotFirst() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(IS_FIRST, false);
   }
 }
