@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/extensions.dart';
-import 'package:taoday/ui/permission/permission_binding.dart';
-import 'package:taoday/ui/permission/permission_one_view.dart';
+import 'package:taoday/core/utils/routes.dart';
 import 'package:taoday/ui/policy/policy_controller.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -52,8 +51,7 @@ class PolicyPage extends GetView<PolicyController> {
                 onTap: controller.isSelected.value
                     ? () {
                         controller.setNotFirst();
-                        Get.off(() => const PermissionOnePage(),
-                            binding: PermissionBinding());
+                        Get.offNamed(permissionOnePage);
                       }
                     : null,
                 child: Container(

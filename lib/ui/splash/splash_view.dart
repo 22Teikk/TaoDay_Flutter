@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taoday/core/utils/extensions.dart';
-import 'package:taoday/ui/permission/permission_binding.dart';
-import 'package:taoday/ui/permission/permission_one_view.dart';
-import 'package:taoday/ui/policy/policy_binding.dart';
-import 'package:taoday/ui/policy/policy_view.dart';
+import 'package:taoday/core/utils/routes.dart';
 import 'package:taoday/ui/splash/splash_controller.dart';
 
 class SplashPage extends GetView<SplashController> {
@@ -15,13 +12,7 @@ class SplashPage extends GetView<SplashController> {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 2), () {
       controller.checkFirst().then((value) => {
-            if (value)
-              {Get.off(() => const PolicyPage(), binding: PolicyBinding())}
-            else
-              {
-                Get.off(() => const PermissionOnePage(),
-                    binding: PermissionBinding())
-              }
+            if (value) {Get.offNamed(policyPage)} else {Get.offNamed(loginPage)}
           });
     });
     return Scaffold(
