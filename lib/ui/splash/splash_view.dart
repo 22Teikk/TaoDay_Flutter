@@ -12,7 +12,10 @@ class SplashPage extends GetView<SplashController> {
   Widget build(BuildContext context) {
     Future.delayed(const Duration(seconds: 2), () {
       controller.checkFirst().then((value) => {
-            if (value) {Get.offNamed(policyPage)} else {Get.offNamed(loginPage)}
+            if (value)
+              {Get.offNamed(policyPage)}
+            else
+              {Get.offNamed(permissionOnePage)}
           });
     });
     return Scaffold(

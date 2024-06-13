@@ -9,7 +9,7 @@ class PermissionController extends GetxController with PermissionMixin {
     if (result.isDenied) {
       return;
     } else {
-      Get.off(permissionTwoPage);
+      Get.offNamed(permissionTwoPage);
     }
   }
 
@@ -18,21 +18,21 @@ class PermissionController extends GetxController with PermissionMixin {
     if (result.isDenied) {
       return;
     } else {
-      Get.off(permissionThreePage);
+      Get.offNamed(permissionThreePage);
     }
   }
 
   void requireBatteryPermission() async {
     var status = await Permission.ignoreBatteryOptimizations.request();
     if (status.isGranted) {
-      Get.off(permissionFourPage);
+      Get.offNamed(permissionFourPage);
     }
   }
 
   void requireBackgroundPermission() async {
     var status = await Permission.locationAlways.request();
     if (status.isGranted) {
-      Get.off(loginPage);
+      Get.offNamed(loginPage);
     }
   }
 }
