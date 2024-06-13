@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/routes.dart';
+import 'package:taoday/ui/home/home_binding.dart';
+import 'package:taoday/ui/home/home_view.dart';
 import 'package:taoday/ui/login/login_binding.dart';
 import 'package:taoday/ui/login/login_view.dart';
 import 'package:taoday/ui/permission/permission_binding.dart';
@@ -63,6 +65,11 @@ class MyApp extends StatelessWidget {
           name: loginPage,
           page: () => const LoginPage(),
           binding: LoginBinding(),
+        ),
+        GetPage(
+          name: homePage,
+          page: () => const HomePage(),
+          binding: HomeBinding(),
         ),
       ],
     );

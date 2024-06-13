@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/extensions.dart';
+import 'package:taoday/core/widgets/primary_button.dart';
 
 mixin PermissionMixin on GetxController {
   Widget buildUI({
@@ -48,28 +49,7 @@ mixin PermissionMixin on GetxController {
                 ),
               ),
             ),
-            InkWell(
-              onTap: press,
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.circular(10.0.wp),
-                ),
-                width: 80.0.wp,
-                height: 6.0.hp,
-                child: Center(
-                  child: Text(
-                    "Allow",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14.0.sp,
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            PrimaryButton(press: press, mh: 8, mv: 2, title: "Allow"),
             SizedBox(height: 2.0.hp),
           ],
         ),
