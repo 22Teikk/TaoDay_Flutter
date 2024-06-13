@@ -14,4 +14,9 @@ class SplashController extends GetxController {
     var isFirst = prefs.getBool(IS_FIRST) ?? true;
     return isFirst;
   }
+
+  Future<bool> checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString(UID) != null ? true : false;
+  }
 }

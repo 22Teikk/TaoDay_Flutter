@@ -15,7 +15,14 @@ class SplashPage extends GetView<SplashController> {
             if (value)
               {Get.offNamed(policyPage)}
             else
-              {Get.offNamed(permissionOnePage)}
+              {
+                controller.checkLogin().then((isLogin) => {
+                  if (isLogin)
+                    {Get.offNamed(homePage)}
+                  else
+                    {Get.offNamed(permissionOnePage)}
+                })
+              }
           });
     });
     return Scaffold(

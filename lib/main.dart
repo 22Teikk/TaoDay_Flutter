@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/routes.dart';
+import 'package:taoday/data/service/sqlite_service.dart';
 import 'package:taoday/ui/home/home_binding.dart';
 import 'package:taoday/ui/home/home_view.dart';
 import 'package:taoday/ui/login/login_binding.dart';
@@ -15,8 +16,11 @@ import 'package:taoday/ui/policy/policy_view.dart';
 import 'package:taoday/ui/splash/splash_binding.dart';
 import 'package:taoday/ui/splash/splash_view.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Get.putAsync(
+    () => SqliteService().init(),
+  );
   runApp(const MyApp());
 }
 

@@ -83,7 +83,14 @@ class LoginPage extends GetView<LoginController> {
           ),
           PrimaryButton(
               press: () {
-                controller.postUser();
+                controller.postUser().then((value) {
+                  const CircularProgressIndicator();
+                  if (value == true) {
+                    controller.saveState();
+                  } else {
+                    Get.snackbar("Load failed", "Please login again!");
+                  }
+                });
               },
               title: "Log in as a Guest",
               mh: 8,
