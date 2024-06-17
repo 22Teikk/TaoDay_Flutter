@@ -18,7 +18,7 @@ class SplashPage extends GetView<SplashController> {
               {
                 controller.checkLogin().then((isLogin) => {
                   if (isLogin)
-                    {Get.offNamed(homePage)}
+                    {Get.offNamed(addFriendPage)}
                   else
                     {Get.offNamed(permissionOnePage)}
                 })

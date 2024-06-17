@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/routes.dart';
 import 'package:taoday/data/service/sqlite_service.dart';
+import 'package:taoday/ui/add_friend/add_friend_binding.dart';
+import 'package:taoday/ui/add_friend/add_friend_view.dart';
 import 'package:taoday/ui/home/home_binding.dart';
 import 'package:taoday/ui/home/home_view.dart';
 import 'package:taoday/ui/login/login_binding.dart';
@@ -32,8 +34,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "TaoDay",
-      initialBinding: SplashBinding(),
-      initialRoute: splashPage,
+      initialBinding: AddFriendBinding(),
+      initialRoute: addFriendPage,
       getPages: [
         GetPage(
           name: splashPage,
@@ -74,6 +76,11 @@ class MyApp extends StatelessWidget {
           name: homePage,
           page: () => const HomePage(),
           binding: HomeBinding(),
+        ),
+        GetPage(
+          name: addFriendPage,
+          page: () => const AddFriendPage(),
+          binding: AddFriendBinding(),
         ),
       ],
     );

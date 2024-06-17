@@ -37,10 +37,10 @@ class LoginController extends GetxController {
     }
   }
 
-  Future saveState()async {
+  Future saveState() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString(UID, user.value.idUser);
     sqliteProvider.insertUser(user.value);
-    Get.offNamed(homePage);
+    Get.offNamed(addFriendPage);
   }
 }

@@ -18,3 +18,5 @@ const contentPermissionFour =
 • In emergency cases, the app can send SOS alerts immediately with your location to friends.''';
 const alertLogin =
     "In case you log in as a Guest, the data will \nnot be saved if you update or remove app.";
+
+const noteCamera = "Point your camera at the QR code to add friend or";

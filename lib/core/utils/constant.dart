@@ -1,6 +1,7 @@
 const IS_FIRST = "IS_FIRST";
-const SERVER_URL = "https://test.taoday.app/";
+const FIRST_LOGIN = "FIRST_LOGIN";
+const SERVER_URL = "http://test.hihoay.io:8005/";
 const UID = "UID";
 
-// For table 
+// For table
 const USER_TABLE = "USER_TABLE";

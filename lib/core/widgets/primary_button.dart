@@ -5,11 +5,13 @@ class PrimaryButton extends StatelessWidget {
   final VoidCallback press;
   final double mh, mv;
   final String title;
+  final Color color;
   const PrimaryButton({
     super.key,
     required this.press,
     this.mh = 8,
     this.mv = 2,
+    this.color = Colors.blue,
     required this.title,
   });
 
@@ -23,7 +25,7 @@ class PrimaryButton extends StatelessWidget {
         height: 6.0.hp,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0.hp),
-          color: Colors.blue,
+          color: color,
         ),
         child: Center(
           child: Text(

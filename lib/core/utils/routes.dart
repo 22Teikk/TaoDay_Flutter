@@ -5,4 +5,5 @@ const permissionTwoPage = "/permissionTwo";
 const permissionThreePage = "/permissionThree";
 const permissionFourPage = "/permissionFour";
 const loginPage = "/login";
+const addFriendPage = '/addFriend';
 const homePage = "/home";
