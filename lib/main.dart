@@ -15,6 +15,10 @@ import 'package:taoday/ui/permission/permission_three_view.dart';
 import 'package:taoday/ui/permission/permission_two_view.dart';
 import 'package:taoday/ui/policy/policy_binding.dart';
 import 'package:taoday/ui/policy/policy_view.dart';
+import 'package:taoday/ui/profile/profile_binding.dart';
+import 'package:taoday/ui/profile/profile_view.dart';
+import 'package:taoday/ui/setting/setting_binding.dart';
+import 'package:taoday/ui/setting/setting_view.dart';
 import 'package:taoday/ui/splash/splash_binding.dart';
 import 'package:taoday/ui/splash/splash_view.dart';
 
@@ -81,6 +85,16 @@ class MyApp extends StatelessWidget {
           name: addFriendPage,
           page: () => const AddFriendPage(),
           binding: AddFriendBinding(),
+        ),
+        GetPage(
+          name: settingPage,
+          page: () => const SettingPage(),
+          binding: SettingBinding(),
+        ),
+        GetPage(
+          name: profilePage,
+          page: () => const ProfilePage(),
+          binding: ProfileBinding(),
         ),
       ],
     );

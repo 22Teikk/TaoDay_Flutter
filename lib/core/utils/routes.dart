@@ -7,3 +7,5 @@ const permissionFourPage = "/permissionFour";
 const loginPage = "/login";
 const addFriendPage = '/addFriend';
 const homePage = "/home";
+const settingPage = "/setting";
+const profilePage = "/profile";

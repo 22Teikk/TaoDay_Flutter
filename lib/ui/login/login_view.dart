@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/extensions.dart';
 import 'package:taoday/core/utils/values.dart';
+import 'package:taoday/core/widgets/google_button.dart';
 import 'package:taoday/core/widgets/primary_button.dart';
+import 'package:taoday/core/widgets/text_divider.dart';
 import 'package:taoday/ui/login/login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
@@ -107,66 +109,15 @@ class LoginPage extends GetView<LoginController> {
           SizedBox(
             height: 4.0.hp,
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 3.0.wp),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Divider(
-                      color: Colors.grey.withOpacity(0.3),
-                      thickness: 2, // độ dày của đường kẻ
-                      indent: 20, // khoảng cách từ bên trái
-                      endIndent: 20),
-                ),
-                Text(
-                  "or continue with",
-                  style: TextStyle(
-                    color: Colors.black.withOpacity(0.6),
-                  ),
-                ),
-                Expanded(
-                  child: Divider(
-                      color: Colors.grey.withOpacity(0.3),
-                      thickness: 2, // độ dày của đường kẻ
-                      indent: 20, // khoảng cách từ bên trái
-                      endIndent: 20),
-                ),
-              ],
-            ),
+          const TextDivider(
+            text: "or continue with",
           ),
-          Container(
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(horizontal: 8.0.wp, vertical: 3.0.hp),
-            height: 6.0.hp,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.grey.withOpacity(0.2),
-                width: 1.0,
-              ),
-              borderRadius: BorderRadius.circular(10.0.hp),
-              color: Colors.transparent,
-            ),
-            child: Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    "assets/icons/icon_google.png",
-                    width: 10.0.wp,
-                  ),
-                ),
-                Center(
-                  child: Text(
-                    "Google",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.0.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ],
+          GoogleButton(
+            press: () {},
+            title: "Login",
+            child: Image.asset(
+              "assets/icons/icon_google.png",
+              width: 10.0.wp,
             ),
           ),
           SizedBox(
