@@ -21,6 +21,8 @@ import 'package:taoday/ui/setting/setting_binding.dart';
 import 'package:taoday/ui/setting/setting_view.dart';
 import 'package:taoday/ui/share/share_binding.dart';
 import 'package:taoday/ui/share/share_view.dart';
+import 'package:taoday/ui/sos/sos_binding.dart';
+import 'package:taoday/ui/sos/sos_view.dart';
 import 'package:taoday/ui/splash/splash_binding.dart';
 import 'package:taoday/ui/splash/splash_view.dart';
 
@@ -102,6 +104,11 @@ class MyApp extends StatelessWidget {
           name: sharePage,
           page: () => const SharePage(),
           binding: ShareBinding(),
+        ),
+        GetPage(
+          name: sosPage,
+          page: () => const SosPage(),
+          binding: SosBinding(),
         ),
       ],
     );

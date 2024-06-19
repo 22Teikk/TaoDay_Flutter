@@ -26,19 +26,22 @@ class HomePage extends GetView<HomeController> {
                 initialCameraPosition: kLake,
                 mapType: controller.type.value,
               ),
-              Container(
-                height: 50.0,
-                width: 50.0,
-                margin: EdgeInsets.only(top: 2.0.hp, left: 5.0.wp),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white),
-                child: Center(
-                  child: Text(
-                    "SOS",
-                    style: TextStyle(
-                      fontSize: 14.0.sp,
-                      color: Colors.red,
+              InkWell(
+                onTap: () => Get.toNamed(sosPage),
+                child: Container(
+                  height: 50.0,
+                  width: 50.0,
+                  margin: EdgeInsets.only(top: 2.0.hp, left: 5.0.wp),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white),
+                  child: Center(
+                    child: Text(
+                      "SOS",
+                      style: TextStyle(
+                        fontSize: 14.0.sp,
+                        color: Colors.red,
+                      ),
                     ),
                   ),
                 ),

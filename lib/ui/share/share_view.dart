@@ -42,7 +42,10 @@ class SharePage extends GetView<ShareController> {
                     hintText: "Search...",
                     keyboardType: TextInputType.streetAddress,
                     padding: const MaterialStatePropertyAll<EdgeInsets>(
-                        EdgeInsets.symmetric(horizontal: 16.0)),
+                      EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                      ),
+                    ),
                     onTap: () {},
                     onChanged: (_) {},
                     leading: const Icon(Icons.search),
