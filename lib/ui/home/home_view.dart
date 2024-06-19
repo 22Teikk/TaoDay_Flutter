@@ -10,7 +10,7 @@ import 'package:taoday/ui/home/home_controller.dart';
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
 
-  static const CameraPosition _kLake = CameraPosition(
+  static const CameraPosition kLake = CameraPosition(
     target: LatLng(37.43296265331129, -122.08832357078792),
   );
 
@@ -23,7 +23,7 @@ class HomePage extends GetView<HomeController> {
             children: [
               GoogleMap(
                 zoomControlsEnabled: false,
-                initialCameraPosition: _kLake,
+                initialCameraPosition: kLake,
                 mapType: controller.type.value,
               ),
               Container(
@@ -74,7 +74,9 @@ class HomePage extends GetView<HomeController> {
                           borderRadius: BorderRadius.circular(10)),
                       child: Center(
                         child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed(sharePage);
+                            },
                             icon: const Icon(
                               Icons.share,
                               color: Colors.blue,

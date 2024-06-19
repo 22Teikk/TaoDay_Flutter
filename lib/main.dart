@@ -19,6 +19,8 @@ import 'package:taoday/ui/profile/profile_binding.dart';
 import 'package:taoday/ui/profile/profile_view.dart';
 import 'package:taoday/ui/setting/setting_binding.dart';
 import 'package:taoday/ui/setting/setting_view.dart';
+import 'package:taoday/ui/share/share_binding.dart';
+import 'package:taoday/ui/share/share_view.dart';
 import 'package:taoday/ui/splash/splash_binding.dart';
 import 'package:taoday/ui/splash/splash_view.dart';
 
@@ -95,6 +97,11 @@ class MyApp extends StatelessWidget {
           name: profilePage,
           page: () => const ProfilePage(),
           binding: ProfileBinding(),
+        ),
+        GetPage(
+          name: sharePage,
+          page: () => const SharePage(),
+          binding: ShareBinding(),
         ),
       ],
     );
