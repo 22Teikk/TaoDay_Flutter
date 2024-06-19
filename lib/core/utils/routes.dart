@@ -12,3 +12,4 @@ const profilePage = "/profile";
 const sharePage = "/share";
 const sosPage = "/sos";
 const emergencyPage = "/emergency";
+const friendPage = "/friend";

@@ -6,6 +6,8 @@ import 'package:taoday/ui/add_friend/add_friend_binding.dart';
 import 'package:taoday/ui/add_friend/add_friend_view.dart';
 import 'package:taoday/ui/emergency/emergency_binding.dart';
 import 'package:taoday/ui/emergency/emergency_view.dart';
+import 'package:taoday/ui/friend_manager/friend_binding.dart';
+import 'package:taoday/ui/friend_manager/friend_manager_view.dart';
 import 'package:taoday/ui/home/home_binding.dart';
 import 'package:taoday/ui/home/home_view.dart';
 import 'package:taoday/ui/login/login_binding.dart';
@@ -116,6 +118,11 @@ class MyApp extends StatelessWidget {
           name: emergencyPage,
           page: () => const EmergencyPage(),
           binding: EmergencyBinding(),
+        ),
+        GetPage(
+          name: friendPage,
+          page: () => const FriendManagerPage(),
+          binding: FriendBinding(),
         ),
       ],
     );

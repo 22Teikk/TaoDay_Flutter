@@ -10,9 +10,27 @@ import 'package:taoday/ui/add_friend/add_friend_controller.dart';
 
 class AddFriendPage extends GetView<AddFriendController> {
   const AddFriendPage({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final bool isFirst = Get.arguments ?? true;
+    List<Widget> actions = [];
+    if (isFirst) {
+      actions.add(
+        TextButton(
+          onPressed: () {
+            controller.skip();
+          },
+          child: Text(
+            "Skip",
+            style: TextStyle(
+              color: Colors.blue,
+              fontWeight: FontWeight.w500,
+              fontSize: 14.0.sp,
+            ),
+          ),
+        ),
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -24,20 +42,7 @@ class AddFriendPage extends GetView<AddFriendController> {
             fontWeight: FontWeight.w500,
           ),
         ),
-        actions: [
-          TextButton(
-              onPressed: () {
-                controller.skip();
-              },
-              child: Text(
-                "Skip",
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14.0.sp,
-                ),
-              ))
-        ],
+        actions: actions,
       ),
       body: Obx(
         () => SingleChildScrollView(

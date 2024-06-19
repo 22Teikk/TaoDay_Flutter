@@ -176,7 +176,9 @@ class MyDraggableSheet extends GetView<BottomSheetController> {
             child: FloatingActionButton(
               shape: const CircleBorder(),
               backgroundColor: Colors.white,
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(friendPage);
+              },
               child: const Icon(
                 Icons.people_outline_outlined,
                 color: Colors.blue,
