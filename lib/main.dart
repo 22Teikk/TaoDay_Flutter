@@ -4,6 +4,8 @@ import 'package:taoday/core/utils/routes.dart';
 import 'package:taoday/data/service/sqlite_service.dart';
 import 'package:taoday/ui/add_friend/add_friend_binding.dart';
 import 'package:taoday/ui/add_friend/add_friend_view.dart';
+import 'package:taoday/ui/emergency/emergency_binding.dart';
+import 'package:taoday/ui/emergency/emergency_view.dart';
 import 'package:taoday/ui/home/home_binding.dart';
 import 'package:taoday/ui/home/home_view.dart';
 import 'package:taoday/ui/login/login_binding.dart';
@@ -109,6 +111,11 @@ class MyApp extends StatelessWidget {
           name: sosPage,
           page: () => const SosPage(),
           binding: SosBinding(),
+        ),
+        GetPage(
+          name: emergencyPage,
+          page: () => const EmergencyPage(),
+          binding: EmergencyBinding(),
         ),
       ],
     );

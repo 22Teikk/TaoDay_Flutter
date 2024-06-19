@@ -11,3 +11,4 @@ const settingPage = "/setting";
 const profilePage = "/profile";
 const sharePage = "/share";
 const sosPage = "/sos";
+const emergencyPage = "/emergency";

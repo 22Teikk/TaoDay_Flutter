@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taoday/core/utils/extensions.dart';
+import 'package:taoday/core/utils/routes.dart';
 import 'package:taoday/core/utils/values.dart';
 import 'package:taoday/ui/sos/sos_controller.dart';
 
@@ -82,7 +81,14 @@ class SosPage extends GetView<SosController> {
                           borderRadius: BorderRadius.circular(10.0.wp),
                         ),
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () async{
+                            var result = await Get.toNamed(emergencyPage);
+                            if (result != null) {
+
+                            } else {
+                              
+                            }
+                          },
                           child: Text(
                             "Custom",
                             style: TextStyle(
