@@ -340,10 +340,10 @@ class AddFriendPage extends GetView<AddFriendController> {
                 SizedBox(
                   width: 70.0.wp,
                   child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap: () => controller.saveWidget(),
+                          onTap: () => controller.saveWidgetAsImage(),
                           child: Expanded(
                             child: Container(
                               padding: EdgeInsets.symmetric(
@@ -378,32 +378,36 @@ class AddFriendPage extends GetView<AddFriendController> {
                         const SizedBox(
                           width: 20,
                         ),
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 1.5.hp, horizontal: 5.0.wp),
-                            decoration: BoxDecoration(
-                              color: Colors.blue.withOpacity(.3),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                const Icon(
-                                  Icons.share,
-                                  color: Colors.blue,
-                                ),
-                                SizedBox(
-                                  width: 1.0.wp,
-                                ),
-                                Text(
-                                  "Share",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0.sp,
+                        InkWell(
+                          onTap: () => controller.captureAndShare(),
+                          child: Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 1.5.hp, horizontal: 5.0.wp),
+                              decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(.3),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  const Icon(
+                                    Icons.share,
+                                    color: Colors.blue,
                                   ),
-                                )
-                              ],
+                                  SizedBox(
+                                    width: 1.0.wp,
+                                  ),
+                                  Text(
+                                    "Share",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0.sp,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         )

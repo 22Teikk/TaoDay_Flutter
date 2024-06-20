@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/routes.dart';
 import 'package:taoday/core/widgets/search_item.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:taoday/core/utils/extensions.dart';
 import 'package:taoday/core/utils/routes.dart';
 import 'package:taoday/core/widgets/google_button.dart';

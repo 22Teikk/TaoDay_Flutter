@@ -1,6 +1,4 @@
-import 'dart:async';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
@@ -10,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taoday/core/utils/common.dart';
 import 'package:taoday/core/utils/constant.dart';
@@ -118,17 +117,36 @@ class AddFriendController extends GetxController {
     super.onClose();
   }
 
-  void saveWidget() async {
+  void saveWidgetAsImage() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
       String path = directory.path;
-      String fileName = "sdfdsf.png"; // Ensure the file has an extension
-
+      String name = DateTime.now().millisecondsSinceEpoch.toString();
+      String fileName = "TaoDay_$name.png";
       await screenshotController.captureAndSave(path, fileName: fileName);
-      await GallerySaver.saveImage("$path/$fileName", albumName: "MyScreenshots");
-      print('Screenshot saved to $path/$fileName');
+      await GallerySaver.saveImage("$path/$fileName",
+          albumName: "MyScreenshots");
+      Get.snackbar("Save successfully", "Your image is saved in the gallery!",
+          snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
-      print('Error saving screenshot: $e');
+      Get.snackbar("Something error", e.toString(),
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
+  void captureAndShare() async {
+    Uint8List? imageBytes = await screenshotController.capture();
+    if (imageBytes != null) {
+      await Share.shareXFiles(
+        [
+          XFile.fromData(imageBytes,
+              mimeType: 'image/png', name: 'screenshot.png')
+        ],
+        text: 'Check out my screenshot!',
+      );
+    } else {
+      Get.snackbar("Something error", "Share the image failed",
+          snackPosition: SnackPosition.BOTTOM);
     }
   }
 }
