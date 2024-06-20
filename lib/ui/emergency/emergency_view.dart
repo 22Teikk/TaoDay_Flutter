@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/extensions.dart';
+import 'package:taoday/core/widgets/search_item.dart';
 import 'package:taoday/ui/emergency/emergency_controller.dart';
 
 class EmergencyPage extends GetView<EmergencyController> {
@@ -44,24 +45,7 @@ class EmergencyPage extends GetView<EmergencyController> {
               const SizedBox(
                 height: 10,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey.withOpacity(.4),
-                ),
-                width: 90.0.wp,
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Search",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide.none,
-                    ),
-                    alignLabelWithHint: false,
-                    prefixIcon: const Icon(Icons.search),
-                  ),
-                ),
-              ),
+              const SearchWidget(title: "Search"),
               const SizedBox(
                 height: 10,
               ),

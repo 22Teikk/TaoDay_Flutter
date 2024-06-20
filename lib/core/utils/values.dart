@@ -23,3 +23,12 @@ const noteCamera = "Point your camera at the QR code to add friend or";
 
 const sosPre =
     "Your emergency notification will be\nsent to the friends listed below within\n10 seconds.";
+
+const emptyFriend =
+    "No friends yet!\nAdd friend to share and \nmanage locations together.";
+
+const emptyRequest = "You don’t have any requests.";
+
+const emptyHistory = "Your History is empty.";
+
+const emptyBlock = "No blocked contacts.";

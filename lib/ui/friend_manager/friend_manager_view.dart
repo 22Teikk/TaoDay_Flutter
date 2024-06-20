@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:taoday/core/utils/routes.dart';
+import 'package:taoday/core/widgets/search_item.dart';
 import 'package:taoday/ui/friend_manager/friend_controller.dart';
 import 'package:taoday/ui/friend_manager/view/block_view.dart';
 import 'package:taoday/ui/friend_manager/view/friend_view.dart';
@@ -53,12 +55,25 @@ class FriendManagerPage extends GetView<FriendController> {
         body: const SafeArea(
           child: SizedBox(
             width: double.infinity,
-            child: TabBarView(
+            child: Column(
               children: [
-                FriendView(),
-                RequestView(),
-                HistoryView(),
-                BlockView(),
+                SizedBox(
+                  height: 20,
+                ),
+                SearchWidget(
+                  title: "Search",
+                  isIcon: false,
+                ),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      FriendView(),
+                      RequestView(),
+                      HistoryView(),
+                      BlockView(),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
