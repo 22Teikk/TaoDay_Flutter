@@ -10,21 +10,46 @@ import 'package:taoday/ui/home/home_controller.dart';
 class HomePage extends GetView<HomeController> {
   const HomePage({super.key});
 
-  static const CameraPosition kLake = CameraPosition(
-    target: LatLng(37.43296265331129, -122.08832357078792),
-  );
+  static const CameraPosition kLake =
+      CameraPosition(target: LatLng(-33.86, 151.20), zoom: 15);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: IconButton(
+        onPressed: () {
+          controller.checkUserLocation();
+        },
+        icon: const Icon(Icons.location_on_outlined),
+      ),
       body: SafeArea(
         child: Obx(
           () => Stack(
             children: [
               GoogleMap(
+                onMapCreated: (controllerMap) {
+                  controller.mapController = controllerMap;
+                },
+                mapToolbarEnabled: false,
                 zoomControlsEnabled: false,
                 initialCameraPosition: kLake,
                 mapType: controller.type.value,
+                compassEnabled: true,
+                trafficEnabled: true,
+                myLocationEnabled: true,
+                indoorViewEnabled: true,
+                // polygons: {const Polygon(polygonId: PolygonId("Hehe"))},
+                markers: {
+                  Marker(
+                    markerId: const MarkerId('Sydney'),
+                    anchor: const Offset(0.5, 1),
+                    position: const LatLng(-33.86, 151.20),
+                    icon: controller.markerIcon.value,
+                    infoWindow: const InfoWindow(
+                      title: "Kiet nt",
+                    ),
+                  )
+                },
               ),
               InkWell(
                 onTap: () => Get.toNamed(sosPage),
