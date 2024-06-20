@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:scan/scan.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:taoday/core/utils/common.dart';
 import 'package:taoday/core/utils/extensions.dart';
 import 'package:taoday/core/utils/values.dart';
@@ -254,29 +255,48 @@ class AddFriendPage extends GetView<AddFriendController> {
                 const SizedBox(
                   height: 10,
                 ),
-                SizedBox(
-                  width: 70.0.wp,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(
-                            color: Colors.grey.withOpacity(.4), width: 1.0)),
-                    child: Image.network(
-                      controller.user.value.qrCode,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress != null) {
-                          return const Center(
-                            child: CircularProgressIndicator(
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(Colors.blue),
+                Screenshot(
+                  controller: controller.screenshotController,
+                  child: SizedBox(
+                    width: 70.0.wp,
+                    child: Container(
+                      padding: const EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(
+                              color: Colors.grey.withOpacity(.4), width: 1.0)),
+                      child: Stack(
+                        children: [
+                          Image.network(
+                            "http://test.hihoay.io:8004/static/qrcode/7F3809.png",
+                            // controller.user.value.qrCode,
+                            loadingBuilder: (context, child, loadingProgress) {
+                              if (loadingProgress != null) {
+                                return const Center(
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.blue),
+                                  ),
+                                );
+                              } else {
+                                return child;
+                              }
+                            },
+                            errorBuilder: (context, error, stackTrace) =>
+                                Container(),
+                          ),
+                          Positioned(
+                            top: 0,
+                            bottom: 0,
+                            right: 0,
+                            left: 0,
+                            child: Image.asset(
+                              "assets/icons/icon_app.webp",
+                              width: 5.0.wp,
                             ),
-                          );
-                        } else {
-                          return child;
-                        }
-                      },
-                      errorBuilder: (context, error, stackTrace) => Container(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -322,32 +342,36 @@ class AddFriendPage extends GetView<AddFriendController> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 1.5.hp, horizontal: 5.0.wp),
-                            decoration: BoxDecoration(
-                              color: Colors.blue.withOpacity(.3),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                const Icon(
-                                  Icons.save_alt,
-                                  color: Colors.blue,
-                                ),
-                                SizedBox(
-                                  width: 1.0.wp,
-                                ),
-                                Text(
-                                  "Save",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0.sp,
+                        InkWell(
+                          onTap: () => controller.saveWidget(),
+                          child: Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 1.5.hp, horizontal: 5.0.wp),
+                              decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(.3),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  const Icon(
+                                    Icons.save_alt,
+                                    color: Colors.blue,
                                   ),
-                                )
-                              ],
+                                  SizedBox(
+                                    width: 1.0.wp,
+                                  ),
+                                  Text(
+                                    "Save",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 16.0.sp,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

@@ -1,7 +1,15 @@
+import 'dart:async';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:screenshot/screenshot.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:taoday/core/utils/common.dart';
 import 'package:taoday/core/utils/constant.dart';
@@ -14,6 +22,7 @@ import 'package:taoday/data/service/api_service.dart';
 import '../../data/model/user.dart';
 
 class AddFriendController extends GetxController {
+  ScreenshotController screenshotController = ScreenshotController();
   GlobalKey key = GlobalKey();
   QRViewController? qrController;
   TextEditingController textIdUser = TextEditingController();
@@ -107,5 +116,19 @@ class AddFriendController extends GetxController {
   void onClose() {
     qrController?.dispose();
     super.onClose();
+  }
+
+  void saveWidget() async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      String path = directory.path;
+      String fileName = "sdfdsf.png"; // Ensure the file has an extension
+
+      await screenshotController.captureAndSave(path, fileName: fileName);
+      await GallerySaver.saveImage("$path/$fileName", albumName: "MyScreenshots");
+      print('Screenshot saved to $path/$fileName');
+    } catch (e) {
+      print('Error saving screenshot: $e');
+    }
   }
 }
