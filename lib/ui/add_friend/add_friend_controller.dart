@@ -45,7 +45,7 @@ class AddFriendController extends GetxController {
     pref = await SharedPreferences.getInstance();
     uid = pref.getString(UID)!;
     user.value = (await db.getUserbyID(uid))!;
-    textIdUser.text = user.value.idUser;
+    textIdUser.text = user.value.idFriendship;
   }
 
   void skip() async {

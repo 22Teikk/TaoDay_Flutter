@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ import 'package:taoday/ui/add_friend/add_friend_controller.dart';
 
 class AddFriendPage extends GetView<AddFriendController> {
   const AddFriendPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final bool isFirst = Get.arguments ?? true;
@@ -267,23 +269,11 @@ class AddFriendPage extends GetView<AddFriendController> {
                               color: Colors.grey.withOpacity(.4), width: 1.0)),
                       child: Stack(
                         children: [
-                          Image.network(
-                            "http://test.hihoay.io:8004/static/qrcode/7F3809.png",
-                            // controller.user.value.qrCode,
-                            loadingBuilder: (context, child, loadingProgress) {
-                              if (loadingProgress != null) {
-                                return const Center(
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.blue),
-                                  ),
-                                );
-                              } else {
-                                return child;
-                              }
-                            },
-                            errorBuilder: (context, error, stackTrace) =>
-                                Container(),
+                          CachedNetworkImage(
+                            imageUrl: controller.user.value.qrCode,
+                            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                CircularProgressIndicator(value: downloadProgress.progress),
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
                           ),
                           Positioned(
                             top: 0,

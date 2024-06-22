@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taoday/core/utils/extensions.dart';
 import 'package:taoday/core/utils/routes.dart';
-import 'package:taoday/core/widgets/line_bottom_sheet.dart';
-import 'package:taoday/ui/home/bottom_sheet_controller.dart';
+import 'package:taoday/core/widgets/search_item.dart';
+import 'package:taoday/core/widgets/user_item.dart';
+import 'package:taoday/ui/home/bottom_sheet_view.dart';
 import 'package:taoday/ui/home/home_controller.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -16,12 +17,6 @@ class HomePage extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: IconButton(
-        onPressed: () {
-          controller.checkUserLocation();
-        },
-        icon: const Icon(Icons.location_on_outlined),
-      ),
       body: SafeArea(
         child: Obx(
           () => Stack(
@@ -136,9 +131,25 @@ class HomePage extends GetView<HomeController> {
                 bottom: 0,
                 right: 0,
                 left: 0,
-                child: const MyDraggableSheet(
-                  child: Column(
-                    children: [],
+                child: MyDraggableSheet(
+                  child: Container(
+                    margin: const EdgeInsets.all(10),
+                    child: const Column(
+                      children: [
+                        UserItem(
+                          image: "assets/images/app_name.png",
+                          name: "Kiet NT (me)",
+                          location: "112 Tran Phu, Ha Dong",
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        SearchWidget(title: "Search"),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -147,71 +158,5 @@ class HomePage extends GetView<HomeController> {
         ),
       ),
     );
-  }
-}
-
-class MyDraggableSheet extends GetView<BottomSheetController> {
-  final Widget child;
-  const MyDraggableSheet({super.key, required this.child});
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      return Stack(
-        children: [
-          DraggableScrollableSheet(
-            key: controller.sheet,
-            initialChildSize: 0.5,
-            maxChildSize: 0.95,
-            minChildSize: 0.2,
-            expand: true,
-            snap: true,
-            snapSizes: [
-              60 / constraints.maxHeight,
-              0.5,
-            ],
-            controller: controller.controllerScrollable,
-            builder: (BuildContext context, ScrollController scrollController) {
-              return DecoratedBox(
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(22),
-                    topRight: Radius.circular(22),
-                  ),
-                ),
-                child: CustomScrollView(
-                  controller: scrollController,
-                  slivers: [
-                    topButtonIndicator(),
-
-                    // SliverToBoxAdapter(
-                    //   child: ,
-                    // ),
-                  ],
-                ),
-              );
-            },
-          ),
-          AnimatedPositioned(
-            curve: Curves.linear,
-            duration: const Duration(milliseconds: 300),
-            bottom: constraints.maxHeight * 0.5 + 20,
-            right: 20,
-            child: FloatingActionButton(
-              shape: const CircleBorder(),
-              backgroundColor: Colors.white,
-              onPressed: () {
-                Get.toNamed(friendPage);
-              },
-              child: const Icon(
-                Icons.people_outline_outlined,
-                color: Colors.blue,
-              ),
-            ),
-          ),
-        ],
-      );
-    });
   }
 }

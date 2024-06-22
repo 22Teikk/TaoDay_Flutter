@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "TaoDay",
-      initialBinding: AddFriendBinding(),
-      initialRoute: addFriendPage,
+      initialBinding: SplashBinding(),
+      initialRoute: splashPage,
       getPages: [
         GetPage(
           name: splashPage,
