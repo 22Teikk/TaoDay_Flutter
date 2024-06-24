@@ -148,30 +148,35 @@ class SharePage extends GetView<ShareController> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30), color: Colors.blue),
-              width: 30.0.wp,
-              height: 50.0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.share,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "Share",
-                    style: TextStyle(
+            InkWell(
+              onTap: () {
+                Get.snackbar("title", "sdfhj");
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(30), color: Colors.blue),
+                width: 30.0.wp,
+                height: 50.0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.share,
                       color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14.0.sp,
                     ),
-                  )
-                ],
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "Share",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.0.sp,
+                      ),
+                    )
+                  ],
+                ),
               ),
             )
           ],
