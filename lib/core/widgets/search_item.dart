@@ -4,10 +4,11 @@ import 'package:taoday/core/utils/extensions.dart';
 class SearchWidget extends StatelessWidget {
   final String title;
   final bool isIcon;
+  final TextEditingController controller;
   const SearchWidget({
     super.key,
     required this.title,
-    this.isIcon = true,
+    this.isIcon = true, required this.controller,
   });
 
   @override
@@ -20,6 +21,7 @@ class SearchWidget extends StatelessWidget {
       width: 90.0.wp,
       height: 5.5.hp,
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           hintText: title,
           border: OutlineInputBorder(

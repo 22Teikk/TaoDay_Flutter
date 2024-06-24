@@ -1,55 +1,75 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:taoday/core/utils/extensions.dart';
+import 'package:taoday/data/service/location_service.dart';
+
+import '../../data/model/user.dart';
+import '../../ui/home/home_controller.dart';
 
 class UserItem extends StatelessWidget {
-  final String image, name, location;
   const UserItem({
     super.key,
-    required this.image,
-    required this.name,
-    required this.location,
+    required this.user, required this.controller,
+    this.isMe = false
   });
+
+  final User user;
+  final HomeController controller;
+  final isMe;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const SizedBox(
-          width: 10.0,
-        ),
-        CircleAvatar(
+    return Card(
+      color: Colors.white,
+      margin: EdgeInsets.zero,
+      elevation: 0,
+      child: ListTile(
+        contentPadding: const EdgeInsets.all(10),
+        onTap: () {},
+        leading: CircleAvatar(
           backgroundColor: Colors.white,
-          child: Image.asset(image),
+          child: ClipOval(
+            child: CachedNetworkImage(
+              imageUrl: user.avatar,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
-        const SizedBox(
-          width: 20,
-        ),
-        Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              name,
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w600,
-                fontSize: 14.0.sp,
-              ),
+              isMe ?
+              "${user.name} (me)" : user.name
+            , style: TextStyle(
+              color: Colors.black,
+              fontSize: 14.0.sp,
+              fontWeight: FontWeight.w500,
             ),
-            Text(
-              location,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 12.0.sp,
-              ),
+            ),
+            FutureBuilder(
+              future: getAddressFromLocation(latitude: user.latitude, longitude: user.longitude),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return const Text('Error loading address');
+                } else {
+                  return Text(snapshot.data ?? 'No address available');
+                }
+              },
             ),
           ],
         ),
-        const Spacer(),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.share_location_rounded),
+        trailing: IconButton(
+          onPressed: () => controller.moveToUserLocation(LatLng(user.latitude, user.longitude)),
+          icon: const Icon(Icons.location_on_outlined),
         ),
-      ],
+        selectedTileColor: Colors.grey[200],
+      ),
     );
   }
 }

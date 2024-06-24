@@ -58,12 +58,14 @@ Future<LatLng?> getLocationFromAddress(String address) async {
   return null;
 }
 
-Future<BitmapDescriptor?> LoadMarkerIcon(String url) async {
+Future<BitmapDescriptor> LoadMarkerIcon(String url) async {
   final markerImage = await _loadNetworkImage(url);
   if (markerImage != null) {
     return markerImage;
+  }else {
+    BitmapDescriptor.defaultMarker;
   }
-  return null;
+  return BitmapDescriptor.defaultMarker;
 }
 
 Future<BitmapDescriptor?> _loadNetworkImage(String imageUrl) async {

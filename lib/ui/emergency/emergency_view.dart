@@ -44,7 +44,7 @@ class EmergencyPage extends GetView<EmergencyController> {
               const SizedBox(
                 height: 10,
               ),
-              const SearchWidget(title: "Search"),
+              SearchWidget(title: "Search", controller: controller.searchController,),
               const SizedBox(
                 height: 10,
               ),

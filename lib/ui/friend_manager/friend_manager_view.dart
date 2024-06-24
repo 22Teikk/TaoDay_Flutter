@@ -51,19 +51,20 @@ class FriendManagerPage extends GetView<FriendController> {
             ),
           ],
         ),
-        body: const SafeArea(
+        body: SafeArea(
           child: SizedBox(
             width: double.infinity,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 SearchWidget(
                   title: "Search",
                   isIcon: false,
+                  controller: controller.searchController,
                 ),
-                Expanded(
+                const Expanded(
                   child: TabBarView(
                     children: [
                       FriendView(),
