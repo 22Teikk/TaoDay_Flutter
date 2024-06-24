@@ -6,6 +6,7 @@ import 'package:taoday/core/utils/routes.dart';
 import 'package:taoday/core/widgets/google_button.dart';
 import 'package:taoday/core/widgets/item_setting.dart';
 import 'package:taoday/core/widgets/text_divider.dart';
+import 'package:taoday/core/widgets/two_option_dialog.dart';
 import 'package:taoday/ui/setting/setting_controller.dart';
 
 class SettingPage extends GetView<SettingController> {
@@ -50,9 +51,12 @@ class SettingPage extends GetView<SettingController> {
                             padding: const EdgeInsets.all(8.0),
                             child: CachedNetworkImage(
                               imageUrl: controller.user.value.avatar,
-                              progressIndicatorBuilder: (context, url, downloadProgress) =>
-                                  CircularProgressIndicator(value: downloadProgress.progress),
-                              errorWidget: (context, url, error) => const Icon(Icons.error),
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) =>
+                                      CircularProgressIndicator(
+                                          value: downloadProgress.progress),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
                             ),
                           ),
                         ),
@@ -135,7 +139,26 @@ class SettingPage extends GetView<SettingController> {
                   ),
                 ),
                 GoogleButton(
-                  press: () {},
+                  press: () {
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (context) {
+                        return TwoOptionDialog(
+                          cancel: "Cancel",
+                          oke: "OK",
+                          title: "Log out",
+                          content: "Are you sure to log out? If you log out as a Guest, your current data will be lost. To save your data, sign in with Google now. Your data will be transferred and saved to your new account.",
+                          callback: (isDone) {
+                            if (isDone) {
+
+                            }
+                            Get.back();
+                          },
+                        );
+                      },
+                    );
+                  },
                   title: "Log out",
                   child: Icon(
                     Icons.logout,

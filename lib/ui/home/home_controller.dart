@@ -101,7 +101,7 @@ class HomeController extends GetxController {
       Marker(
         markerId: MarkerId(user.value.idUser),
         anchor: const Offset(0.5, 1),
-        icon: icon!,
+        icon: icon,
         position: LatLng(user.value.latitude, user.value.longitude),
       ),
     );
@@ -111,7 +111,7 @@ class HomeController extends GetxController {
         Marker(
           markerId: MarkerId(element.idUser),
           anchor: const Offset(0.5, 1),
-          icon: icon!,
+          icon: icon,
           position: LatLng(element.latitude, element.longitude),
         ),
       );
