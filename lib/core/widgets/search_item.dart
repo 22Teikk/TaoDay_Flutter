@@ -18,6 +18,7 @@ class SearchWidget extends StatelessWidget {
         color: Colors.grey.withOpacity(.4),
       ),
       width: 90.0.wp,
+      height: 5.5.hp,
       child: TextField(
         decoration: InputDecoration(
           hintText: title,
@@ -26,6 +27,7 @@ class SearchWidget extends StatelessWidget {
             borderSide: BorderSide.none,
           ),
           alignLabelWithHint: false,
+          contentPadding: EdgeInsets.symmetric(vertical: (5.0.hp - 24) / 2),
           prefixIcon: isIcon ? const Icon(Icons.search) : null,
         ),
       ),

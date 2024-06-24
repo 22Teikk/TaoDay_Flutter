@@ -1,9 +1,6 @@
-import 'dart:async';
-import 'dart:typed_data';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:image/image.dart' as img;
+import 'package:taoday/data/service/location_service.dart';
 
 class HomeController extends GetxController {
   late GoogleMapController mapController;
@@ -13,7 +10,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _setMarkerIcon();
+    setMarkerUI();
   }
 
   final List<MapType> mapTypes = [
@@ -32,23 +29,6 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> _setMarkerIcon() async {
-    const imageUrl = 'http://test.hihoay.io:8003//static//avatars/ic-01.png';
-    final markerImage = await _loadNetworkImage(imageUrl);
-    if (markerImage != null) {
-      markerIcon.value = markerImage;
-    }
-  }
-
-  Future<BitmapDescriptor?> _loadNetworkImage(String imageUrl) async {
-    int size = 100;
-    final file = await DefaultCacheManager().getSingleFile(imageUrl);
-    final Uint8List bytes = await file.readAsBytes();
-    img.Image image = img.decodeImage(bytes)!;
-    img.Image resizedImage = img.copyResize(image, width: size, height: size);
-    Uint8List resizedBytes = img.encodePng(resizedImage);
-    return BitmapDescriptor.fromBytes(resizedBytes);
-  }
 
   void checkUserLocation() {
     mapController.animateCamera(CameraUpdate.newCameraPosition(
@@ -58,5 +38,12 @@ class HomeController extends GetxController {
         zoom: 17.0,
       ),
     ));
+  }
+
+  void setMarkerUI() async{
+    var marker = await LoadMarkerIcon("");
+    if (marker != null) {
+      markerIcon.value = marker;
+    }
   }
 }
