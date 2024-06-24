@@ -13,7 +13,7 @@ class ShareController extends GetxController {
   var markers = <Marker>[].obs;
   TextEditingController locationController = TextEditingController();
   TextEditingController searchController = TextEditingController();
-  var isEmptySeach = true.obs;
+  var isEmptySearch = true.obs;
   late GoogleMapController mapController;
   late SharedPreferences pref;
   final SqliteProvider db;

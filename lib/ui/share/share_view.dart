@@ -61,9 +61,9 @@ class SharePage extends GetView<ShareController> {
                       },
                       leading: const Icon(Icons.search),
                       trailing: [
-                        if (controller.isEmptySeach.value == false) IconButton(
+                        if (controller.isEmptySearch.value == false) IconButton(
                           onPressed: () {
-                            controller.isEmptySeach.value = true;
+                            controller.isEmptySearch.value = true;
                             controller.searchController.clear();
                           },
                           icon: const Icon(Icons.close_sharp),
@@ -71,9 +71,9 @@ class SharePage extends GetView<ShareController> {
                       ],
                       onChanged: (str) {
                         if (str.isNotEmpty) {
-                          controller.isEmptySeach.value = false;
+                          controller.isEmptySearch.value = false;
                         } else {
-                          controller.isEmptySeach.value = true;
+                          controller.isEmptySearch.value = true;
                         }
                       },
                     ),
