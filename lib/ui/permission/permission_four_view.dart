@@ -11,6 +11,7 @@ class PermissionFourPage extends GetView<PermissionController> {
 
   @override
   Widget build(BuildContext context) {
+    if (controller.initialized == false) Get.put(PermissionController());
     Permission.locationAlways.isGranted.then((value) {
       if (value == true) {
         Get.offNamed(loginPage);

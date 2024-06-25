@@ -33,6 +33,8 @@ class PermissionController extends GetxController with PermissionMixin {
     var status = await Permission.locationAlways.request();
     if (status.isGranted) {
       Get.offNamed(loginPage);
+    } else {
+      await Permission.locationAlways.request();
     }
   }
 }
