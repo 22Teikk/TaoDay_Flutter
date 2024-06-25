@@ -17,11 +17,19 @@ class SplashPage extends GetView<SplashController> {
             else
               {
                 controller.checkLogin().then((isLogin) => {
-                  if (isLogin)
-                    {Get.offNamed(addFriendPage)}
-                  else
-                    {Get.offNamed(permissionOnePage)}
-                })
+                      if (isLogin)
+                        {
+                          controller.checkFirstLogin().then((firstLogin) {
+                            if (firstLogin) {
+                              Get.offNamed(addFriendPage);
+                            }else {
+                              Get.offNamed(homePage);
+                            }
+                          })
+                        }
+                      else
+                        {Get.offNamed(permissionOnePage)}
+                    })
               }
           });
     });

@@ -148,10 +148,11 @@ class SettingPage extends GetView<SettingController> {
                           cancel: "Cancel",
                           oke: "OK",
                           title: "Log out",
-                          content: "Are you sure to log out? If you log out as a Guest, your current data will be lost. To save your data, sign in with Google now. Your data will be transferred and saved to your new account.",
+                          content:
+                              "Are you sure to log out? If you log out as a Guest, your current data will be lost. To save your data, sign in with Google now. Your data will be transferred and saved to your new account.",
                           callback: (isDone) {
                             if (isDone) {
-
+                              controller.logOut();
                             }
                             Get.back();
                           },

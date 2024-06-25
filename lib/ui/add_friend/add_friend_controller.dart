@@ -49,6 +49,7 @@ class AddFriendController extends GetxController {
   }
 
   void skip() async {
+    await pref.setBool(FIRST_LOGIN, false);
     Get.offNamed(homePage);
   }
 
