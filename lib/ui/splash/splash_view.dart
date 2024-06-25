@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taoday/core/utils/extensions.dart';
 import 'package:taoday/core/utils/routes.dart';
+import 'package:taoday/data/service/permission_service.dart';
 import 'package:taoday/ui/splash/splash_controller.dart';
 
 class SplashPage extends GetView<SplashController> {
@@ -16,20 +17,29 @@ class SplashPage extends GetView<SplashController> {
               {Get.offNamed(policyPage)}
             else
               {
-                controller.checkLogin().then((isLogin) => {
-                      if (isLogin)
-                        {
-                          controller.checkFirstLogin().then((firstLogin) {
-                            if (firstLogin) {
-                              Get.offNamed(addFriendPage);
-                            }else {
-                              Get.offNamed(homePage);
-                            }
-                          })
-                        }
-                      else
-                        {Get.offNamed(permissionOnePage)}
-                    })
+                controller.checkLogin().then((isLogin) async {
+                  if (isLogin) {
+                    controller.checkFirstLogin().then((firstLogin) {
+                      if (firstLogin) {
+                        Get.offNamed(addFriendPage);
+                      } else {
+                        Get.offNamed(homePage);
+                      }
+                    });
+                  } else {
+                    if (await checkNotificationPermission() == false) {
+                      Get.offNamed(permissionOnePage);
+                    } else if (await checkLocationPermission() == false) {
+                      Get.offNamed(permissionTwoPage);
+                    } else if (await checkBatteryPermission() == false) {
+                      Get.offNamed(permissionThreePage);
+                    } else if (await checkBackgroundPermission() == false) {
+                      Get.offNamed(permissionFourPage);
+                    } else {
+                      Get.offNamed(loginPage);
+                    }
+                  }
+                })
               }
           });
     });
